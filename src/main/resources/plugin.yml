@@ -1,0 +1,6 @@
+name: AstroPets
+version: '${project.version}'
+main: net.mcjustice.astropets.AstroPets
+api-version: 1.19
+depend: [AstroAPI]
+authors: [ Digital_Astronaut ]
