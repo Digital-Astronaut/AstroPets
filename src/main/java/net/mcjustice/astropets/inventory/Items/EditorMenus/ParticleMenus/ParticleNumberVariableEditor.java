@@ -19,7 +19,7 @@ import java.util.List;
 public class ParticleNumberVariableEditor extends PaginatedMenu {
 
     private String floatView = "Non-Specific";
-    private String intView = "Particle Count";
+    private String intView;
 
     private float particleSize = 1.0f;
 
@@ -31,14 +31,16 @@ public class ParticleNumberVariableEditor extends PaginatedMenu {
         setSelectedItem(selectedItem);
         this.intView = intView;
 
-        if (previousMenu != null) {
-            setMainMenu(new ItemsMainMenu(playerMenuUtility));
-        }
+        setMainMenu(new ItemsMainMenu(playerMenuUtility));
     }
 
-    public AstroItem getSelectedItem() { return selectedItem; }
+    public AstroItem getSelectedItem() {
+        return selectedItem;
+    }
 
-    public void setSelectedItem(AstroItem selectedItem) { this.selectedItem = selectedItem; }
+    public void setSelectedItem(AstroItem selectedItem) {
+        this.selectedItem = selectedItem;
+    }
 
     @Override
     public List<?> getData() {

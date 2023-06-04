@@ -8,6 +8,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.EntityType;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,13 +40,6 @@ public class CustomMobFile {
                 if (customMobsInFile.length > 0) {
                     for (File mob : customMobsInFile) {
 
-                        if (!getCustomMobsMap().containsKey(mob.getName())) {
-
-                            AstroMob astroMob = new AstroMob(mob.getPath());
-
-                            customMobsMap.put(mob.getName().toUpperCase(), astroMob);
-                        }
-
                         if (!getCustomMobsMapMappedToFolders().containsKey(mob.getAbsolutePath())) {
 
                             AstroMob astroMob = new AstroMob(mob.getPath());
@@ -58,26 +52,9 @@ public class CustomMobFile {
         }
     }
 
-    public static HashMap<String, AstroMob> getCustomMobsMap() {
-
-        return customMobsMap;
-    }
-
     public static HashMap<String, AstroMob> getCustomMobsMapMappedToFolders() {
 
         return customMobsMapMappedToFolders;
-    }
-
-    public static void createNewCustomMob(String fileName) {
-
-        AstroMob astroMob = new AstroMob(FileUtils.checkForYML(fileName));
-
-        if (!customMobsMapContainsMob(astroMob.getName().toUpperCase())) {
-            Bukkit.getConsoleSender().sendMessage(ChatColor.YELLOW + "Custom mobs map doesn't contain " + astroMob.getName().toUpperCase() + " adding now...");
-            getCustomMobsMap().put(astroMob.getName().toUpperCase(), astroMob);
-
-            astroMob.reloadParams();
-        }
     }
 
     public static void createNewCustomMob2(String absolutePath) {
@@ -90,11 +67,6 @@ public class CustomMobFile {
 
             astroMob.reloadParams();
         }
-    }
-
-    public static boolean customMobsMapContainsMob(String mobFile) {
-
-        return getCustomMobsMap().containsKey(mobFile.toUpperCase());
     }
 
     public static boolean customMobsMapMappedToFoldersContainsMob(String absolutePath) {
@@ -140,10 +112,22 @@ public class CustomMobFile {
         AstroMob mob = null;
 
         for (Map.Entry<String, AstroMob> entry : getCustomMobsMapMappedToFolders().entrySet()) {
-            if (entry.getKey().contains(mobType) || entry.getKey().contains(mobName)) {
+            if (entry.getKey().contains(mobType) && entry.getKey().contains(mobName)) {
                 mob = entry.getValue();
             }
         }
         return mob;
+    }
+
+    public static List<AstroMob> getCustomMobsMappedToFolder(String mobType) {
+
+        List<AstroMob> mobs = new ArrayList<>();
+
+        for (Map.Entry<String, AstroMob> entry : getCustomMobsMapMappedToFolders().entrySet()) {
+            if (entry.getKey().contains(mobType)) {
+                mobs.add(entry.getValue());
+            }
+        }
+        return mobs;
     }
 }

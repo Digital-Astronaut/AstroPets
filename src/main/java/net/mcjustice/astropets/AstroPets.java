@@ -29,6 +29,7 @@ import net.mcjustice.astropets.listeners.PetInteractEvent;
 import net.mcjustice.astropets.listeners.enchantments.AutoSmeltListener;
 import net.mcjustice.astropets.listeners.enchantments.TreecapitatorEvent;
 import net.mcjustice.astropets.listeners.items.ChestLinkListener;
+import net.mcjustice.astropets.listeners.mobs.*;
 import net.mcjustice.astropets.listeners.particles.ItemParticleListener;
 import net.mcjustice.astropets.mobs.AstroMob;
 import net.mcjustice.astropets.mobs.AstroPet;
@@ -202,11 +203,18 @@ public final class AstroPets extends JavaPlugin {
             ItemFile.getItemsMap().get(key).reloadParams();
         }
 
-        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMap().entrySet()) {
+//        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMap().entrySet()) {
+//
+//            String key = entry.getKey();
+//
+//            CustomMobFile.getCustomMobsMap().get(key).reloadParams();
+//        }
+
+        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
             String key = entry.getKey();
 
-            CustomMobFile.getCustomMobsMap().get(key).reloadParams();
+            CustomMobFile.getCustomMobsMapMappedToFolders().get(key).reloadParams();
         }
     }
 
@@ -224,11 +232,16 @@ public final class AstroPets extends JavaPlugin {
     }
 
     public void registerListeners() {
-        Bukkit.getPluginManager().registerEvents(new PetInteractEvent(), this);
+//        Bukkit.getPluginManager().registerEvents(new PetInteractEvent(), this);
         Bukkit.getPluginManager().registerEvents(new TreecapitatorEvent(), this);
         Bukkit.getPluginManager().registerEvents(new AutoSmeltListener(), this);
         Bukkit.getPluginManager().registerEvents(new ItemParticleListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChestLinkListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobTargetListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobSpawnListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobPlayerDamageListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerEntityKillCustomMob(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobInteractEvent(), this);
     }
 
     public static AstroPets getPlugin() {
