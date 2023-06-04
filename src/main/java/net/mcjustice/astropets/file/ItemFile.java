@@ -101,6 +101,23 @@ public class ItemFile {
         return validMatsAndRegisteredItems;
     }
 
+    public static List<String> getAllValidMatsAndEnabledHeldItems() {
+
+        List<String> validMatsAndRegisteredItems = new ArrayList<>();
+
+        for (Map.Entry<String, AstroItem> entry : ItemFile.getItemsMap().entrySet()) {
+            entry.getValue().getIsEnabled().onReload();
+            if (Boolean.parseBoolean(entry.getValue().getIsEnabled().getCurrentValue().toString())) {
+
+                validMatsAndRegisteredItems.add(entry.getKey().replace(".YML", ""));
+            }
+        }
+
+        validMatsAndRegisteredItems.addAll(MaterialUtils.allValidMaterialsStringList());
+
+        return validMatsAndRegisteredItems;
+    }
+
     public static List<String> getAllValidHelmetsAndCustomHelmets() {
 
         List<String> validHelmetsAndCustomHelmets = new ArrayList<>();

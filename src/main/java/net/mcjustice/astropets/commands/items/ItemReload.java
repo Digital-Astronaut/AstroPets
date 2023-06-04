@@ -78,7 +78,6 @@ public class ItemReload extends SubCommand {
                     p.sendMessage(ChatColor.RED + "An item with that name does not exist.");
                 }
 
-                // /items reload izzy Particles.Particle Effect
             } else if (args.length >= 3) {
 
                 String argFixed = (args[1] + ".yml").toUpperCase();

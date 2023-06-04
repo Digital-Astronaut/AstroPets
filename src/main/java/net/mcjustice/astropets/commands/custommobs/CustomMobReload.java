@@ -56,12 +56,14 @@ public class CustomMobReload extends SubCommand {
 
             if (args.length == 1) {
 
+                CustomMobFile.populateCustomMobsMap();
+
                 for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
-                    entry.getValue().getMobHelmet().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
-                    entry.getValue().getMobChestplate().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
-                    entry.getValue().getMobLeggings().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
-                    entry.getValue().getMobBoots().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
+                    entry.getValue().getMobHelmetItem().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
+                    entry.getValue().getMobChestplateItem().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
+                    entry.getValue().getMobLeggingsItem().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
+                    entry.getValue().getMobBootsItem().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
 
                     CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getKey()).reloadParams();
                 }
@@ -96,10 +98,10 @@ public class CustomMobReload extends SubCommand {
 
                         for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmet().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplate().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggings().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBoots().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmetItem().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplateItem().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggingsItem().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBootsItem().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
 
                             CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).reloadParams();
                         }
@@ -122,10 +124,10 @@ public class CustomMobReload extends SubCommand {
 
                             for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmet().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplate().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggings().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBoots().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmetItem().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplateItem().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggingsItem().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBootsItem().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
 
                                 CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).reloadParams();
                             }
@@ -183,10 +185,10 @@ public class CustomMobReload extends SubCommand {
 
                 for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
-                    entry.getValue().getMobHelmet().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
-                    entry.getValue().getMobChestplate().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
-                    entry.getValue().getMobLeggings().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
-                    entry.getValue().getMobBoots().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
+                    entry.getValue().getMobHelmetItem().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
+                    entry.getValue().getMobChestplateItem().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
+                    entry.getValue().getMobLeggingsItem().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
+                    entry.getValue().getMobBootsItem().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
 
                     CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getKey()).reloadParams();
                 }
@@ -218,10 +220,10 @@ public class CustomMobReload extends SubCommand {
 
                         for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmet().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplate().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggings().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
-                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBoots().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmetItem().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplateItem().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggingsItem().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
+                            CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBootsItem().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
 
                             CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).reloadParams();
                         }
@@ -244,10 +246,10 @@ public class CustomMobReload extends SubCommand {
 
                             for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmet().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplate().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggings().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
-                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBoots().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobHelmetItem().overrideValidValues(ItemFile.getAllValidHelmetsAndCustomHelmets());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobChestplateItem().overrideValidValues(ItemFile.getAllValidChestplatesAndCustomChestplates());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobLeggingsItem().overrideValidValues(ItemFile.getAllValidLeggingsAndCustomLeggings());
+                                CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).getMobBootsItem().overrideValidValues(ItemFile.getAllValidBootsAndCustomBoots());
 
                                 CustomMobFile.getCustomMobsMapMappedToFolders().get(entry.getValue().getAbsolutePath().toUpperCase()).reloadParams();
                             }

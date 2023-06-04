@@ -3,15 +3,20 @@ package net.mcjustice.astropets.mobs;
 import net.mcjustice.astroapi.File.CustomMobAstroFile;
 import net.mcjustice.astroapi.FileParameters.*;
 import net.mcjustice.astroapi.Utils.MaterialUtils;
+import net.mcjustice.astroapi.Utils.MobUtils;
 import net.mcjustice.astropets.file.ItemFile;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class AstroMob extends CustomMobAstroFile {
 
     public AstroMob(String filePath) {
         super(filePath);
     }
+
+
 
     @Override
     public void setMobDisplayName() {
@@ -27,7 +32,25 @@ public class AstroMob extends CustomMobAstroFile {
     }
 
     @Override
+    public void setMobHealth() {
+
+        mobHealth = new AstroDouble(this, "Mob Health", 1.0D, Double.MAX_VALUE, 20.0D);
+    }
+    @Override
+    public void setWhitelistedMobs() {
+
+        whitelistedMobs = new AstroStringList(this, "Whitelisted Targets.Mobs", MobUtils.getEntityTypeListString(), false, List.of("PILLAGER"));
+    }
+
+    @Override
+    public void setWhitelistedCreatureTypes() {
+
+        whitelistedCreatureTypes = new AstroStringList(this, "Whitelisted Targets.Creature Types", null, false, List.of("VAMPIRE"));
+    }
+
+    @Override
     public void setParticleEffect() {
+
 
     }
 
@@ -69,65 +92,143 @@ public class AstroMob extends CustomMobAstroFile {
     @Override
     public void setSpawnChance() {
 
-        spawnChance = new AstroDouble(this, "Spawn Chance", 0D, 100D, 5.0D);
+        spawnChance = new AstroInteger(this, "Spawn Chance", 1,  100, 10);
     }
 
     @Override
     public void setMobDrops() {
 
-//        List<String> validMatsAndRegisteredItems = new ArrayList<>();
-//
-//        for (String file : ItemFile.getFileNames()) {
-//            validMatsAndRegisteredItems.add(file.toUpperCase().replace(".YML", ""));
-//        }
-//
-//        validMatsAndRegisteredItems.addAll(ItemUtils.itemMaterialsList());
-//
-//        mobDrops = new AstroHashMap<>(this, "Mob Drops", validMatsAndRegisteredItems, , )
+        List<String> validMatsAndRegisteredItems = new ArrayList<>();
+
+        List<Integer> validInts = new ArrayList<>();
+
+        for (String file : ItemFile.getFileNames()) {
+            validMatsAndRegisteredItems.add(file.toUpperCase().replace(".YML", ""));
+        }
+
+        for (int i = 0; i <= 64; i++) {
+            validInts.add(i);
+        }
+
+        validMatsAndRegisteredItems.addAll(MaterialUtils.allValidMaterialsStringList());
+
+//        mobDrops = new AstroHashMap<>(this, "Inventory Contents.Mob Drops", validMatsAndRegisteredItems, validInts, null);
+        mobDrops = new AstroHashMap<>(this, "Inventory Contents.Mob Drops", null, null, null);
 //    }
     }
 
     @Override
-    public void setMobHelmet() {
+    public void setSectionTest() {
 
-        // Was MaterialUtils.getAllHelmetMaterials()
-
-        mobHelmet = new AstroString(this, "Inventory Contents.Helmet", ItemFile.getAllValidHelmetsAndCustomHelmets(), "LEATHER_HELMET");
+        sectionTest = new AstroSection(this, "Inventory Contents.Mob Drops", MaterialUtils.allValidMaterialsStringList(), null);
     }
 
     @Override
-    public void setMobChestplate() {
+    public void setMobHelmetEnabled() {
 
-        // Was MaterialUtils.getAllChestplateMaterials()
-        mobChestplate = new AstroString(this, "Inventory Contents.Chestplate", ItemFile.getAllValidChestplatesAndCustomChestplates(), "LEATHER_CHESTPLATE");
+        mobHelmetEnabled = new AstroBoolean(this, "Inventory Contents.Helmet.Enabled", true);
     }
 
     @Override
-    public void setMobLeggings() {
+    public void setMobHelmetItem() {
 
-        // Was MaterialUtils.getAllLeggingMaterials()
-
-        mobLeggings = new AstroString(this, "Inventory Contents.Leggings", ItemFile.getAllValidLeggingsAndCustomLeggings(), "LEATHER_LEGGINGS");
+        mobHelmetItem = new AstroString(this, "Inventory Contents.Helmet.Item", ItemFile.getAllValidHelmetsAndCustomHelmets(), "IRON_HELMET");
     }
 
     @Override
-    public void setMobBoots() {
+    public void setMobHelmetChance() {
 
-        // Was MaterialUtils.getAllBootMaterials()
-
-        mobBoots = new AstroString(this, "Inventory Contents.Boots", ItemFile.getAllValidBootsAndCustomBoots(), "LEATHER_BOOTS");
+        mobHelmetChance = new AstroInteger(this, "Inventory Contents.Helmet.Chance", 1, 100, 10);
     }
 
     @Override
-    public void setMobMainHand() {
+    public void setMobChestplateEnabled() {
 
-        mobMainHand = new AstroString(this, "Inventory Contents.Main Hand", MaterialUtils.allValidMaterialsStringList(), "STONE_SWORD");
+        mobChestplateEnabled = new AstroBoolean(this, "Inventory Contents.Chestplate.Enabled", true);
     }
 
     @Override
-    public void setMobOffHand() {
+    public void setMobChestplateItem() {
 
-        mobOffHand = new AstroString(this, "Inventory Contents.Off Hand", MaterialUtils.allValidMaterialsStringList(), "CROSSBOW");
+        mobChestplateItem = new AstroString(this, "Inventory Contents.Chestplate.Item", ItemFile.getAllValidChestplatesAndCustomChestplates(), "IRON_CHESTPLATE");
+    }
+
+    @Override
+    public void setMobChestplateChance() {
+
+        mobChestplateChance = new AstroInteger(this, "Inventory Contents.Chestplate.Chance", 1, 100, 10);
+    }
+
+    @Override
+    public void setMobLeggingsEnabled() {
+
+        mobLeggingsEnabled = new AstroBoolean(this, "Inventory Contents.Leggings.Enabled", true);
+    }
+
+    @Override
+    public void setMobLeggingsItem() {
+
+        mobLeggingsItem = new AstroString(this, "Inventory Contents.Leggings.Item", ItemFile.getAllValidLeggingsAndCustomLeggings(), "IRON_LEGGINGS");
+    }
+
+    @Override
+    public void setMobLeggingsChance() {
+
+        mobLeggingsChance = new AstroInteger(this, "Inventory Contents.Leggings.Chance", 1, 100, 10);
+    }
+
+    @Override
+    public void setMobBootsEnabled() {
+
+        mobBootsEnabled = new AstroBoolean(this, "Inventory Contents.Boots.Enabled", true);
+    }
+
+    @Override
+    public void setMobBootsItem() {
+
+        mobBootsItem = new AstroString(this, "Inventory Contents.Boots.Item", ItemFile.getAllValidBootsAndCustomBoots(), "IRON_BOOTS");
+    }
+
+    @Override
+    public void setMobBootsChance() {
+
+        mobBootsChance = new AstroInteger(this, "Inventory Contents.Boots.Chance", 1, 100, 10);
+    }
+
+    @Override
+    public void setMobMainHandEnabled() {
+
+        mobMainHandEnabled = new AstroBoolean(this, "Inventory Contents.Main Hand.Enabled", true);
+    }
+
+    @Override
+    public void setMobMainHandItem() {
+
+        mobMainHandItem = new AstroString(this, "Inventory Contents.Main Hand.Item", ItemFile.getAllValidMatsAndEnabledItems(), "IRON_SWORD");
+    }
+
+    @Override
+    public void setMobMainHandChance() {
+
+        mobMainHandChance = new AstroInteger(this, "Inventory Contents.Main Hand.Chance", 1, 100, 10);
+    }
+
+    @Override
+    public void setMobOffHandEnabled() {
+
+        mobOffHandEnabled = new AstroBoolean(this, "Inventory Contents.Off Hand.Enabled", true);
+    }
+
+    @Override
+    public void setMobOffHandItem() {
+
+        mobOffHandItem = new AstroString(this, "Inventory Contents.Off Hand.Item", ItemFile.getAllValidMatsAndEnabledItems(), "STONE_SWORD");
+    }
+
+    @Override
+    public void setMobOffHandChance() {
+
+        mobOffHandChance = new AstroInteger(this, "Inventory Contents.Off Hand.Chance", 1, 100, 10);
     }
 
     @Override

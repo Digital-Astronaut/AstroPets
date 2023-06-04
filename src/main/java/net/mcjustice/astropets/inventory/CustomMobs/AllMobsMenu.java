@@ -42,7 +42,6 @@ public class AllMobsMenu extends PaginatedMenu {
 
             List<String> lore = new ArrayList<>();
 
-
             int amountOfType = 0;
 
             for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {

@@ -83,9 +83,10 @@ public class SpecificMobEditorMain extends Menu {
                 new MobAttributeEditorMain(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), selectedMob, this).open();
             } else if (e.getRawSlot() == 12) {
 
-
+                new WhitelistedTargetsEditor(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), selectedMob, this).open();
             } else if (e.getRawSlot() == 14) {
 
+                new MobSpawnChanceEditor(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), selectedMob, this).open();
             } else if (e.getRawSlot() == 16) {
 
                 new MobInventoryContentsEditor(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), selectedMob, this).open();

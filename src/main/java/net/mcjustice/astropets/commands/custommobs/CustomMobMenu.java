@@ -36,9 +36,13 @@ public class CustomMobMenu extends SubCommand {
     }
 
     @Override
-    public void perform(CommandSender commandSender, String[] strings) {
+    public void perform(CommandSender commandSender, String[] args) {
 
         if (commandSender instanceof Player p) {
+
+            if (args.length == 0) {
+                p.sendMessage("Testing");
+            }
             new CustomMobsMainMenu(MenuManager.getPlayerMenuUtility(p)).open();
         }
     }

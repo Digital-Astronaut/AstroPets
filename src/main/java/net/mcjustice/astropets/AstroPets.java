@@ -1,7 +1,6 @@
 package net.mcjustice.astropets;
 
 import net.mcjustice.astroapi.Commands.CommandManager;
-import net.mcjustice.astroapi.File.CustomMobAstroFile;
 import net.mcjustice.astroapi.Inventory.MenuManager;
 import net.mcjustice.astroapi.Utils.EnchantmentUtils;
 import net.mcjustice.astroapi.Utils.FileUtils;
@@ -25,10 +24,10 @@ import net.mcjustice.astropets.file.EnchantmentFile;
 import net.mcjustice.astropets.file.ItemFile;
 import net.mcjustice.astropets.file.PetFile;
 import net.mcjustice.astropets.items.AstroItem;
-import net.mcjustice.astropets.listeners.PetInteractEvent;
 import net.mcjustice.astropets.listeners.enchantments.AutoSmeltListener;
 import net.mcjustice.astropets.listeners.enchantments.TreecapitatorEvent;
 import net.mcjustice.astropets.listeners.items.ChestLinkListener;
+import net.mcjustice.astropets.listeners.mobs.*;
 import net.mcjustice.astropets.listeners.particles.ItemParticleListener;
 import net.mcjustice.astropets.mobs.AstroMob;
 import net.mcjustice.astropets.mobs.AstroPet;
@@ -64,6 +63,7 @@ public final class AstroPets extends JavaPlugin {
 
         if (api.isEnabled()) {
             ASTROPETS = this;
+            // TODO: Make FileUtils.createNewFolder method not static since it requires initialization.
             FILEUTILS = new FileUtils(this);
             MenuManager.setupListener(getServer(), this);
 
@@ -202,11 +202,18 @@ public final class AstroPets extends JavaPlugin {
             ItemFile.getItemsMap().get(key).reloadParams();
         }
 
-        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMap().entrySet()) {
+//        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMap().entrySet()) {
+//
+//            String key = entry.getKey();
+//
+//            CustomMobFile.getCustomMobsMap().get(key).reloadParams();
+//        }
+
+        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
             String key = entry.getKey();
 
-            CustomMobFile.getCustomMobsMap().get(key).reloadParams();
+            CustomMobFile.getCustomMobsMapMappedToFolders().get(key).reloadParams();
         }
     }
 
@@ -224,11 +231,16 @@ public final class AstroPets extends JavaPlugin {
     }
 
     public void registerListeners() {
-        Bukkit.getPluginManager().registerEvents(new PetInteractEvent(), this);
+//        Bukkit.getPluginManager().registerEvents(new PetInteractEvent(), this);
         Bukkit.getPluginManager().registerEvents(new TreecapitatorEvent(), this);
         Bukkit.getPluginManager().registerEvents(new AutoSmeltListener(), this);
         Bukkit.getPluginManager().registerEvents(new ItemParticleListener(), this);
         Bukkit.getPluginManager().registerEvents(new ChestLinkListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobTargetListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobSpawnListener(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobPlayerDamageListener(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerEntityKillCustomMob(), this);
+        Bukkit.getPluginManager().registerEvents(new CustomMobInteractEvent(), this);
     }
 
     public static AstroPets getPlugin() {

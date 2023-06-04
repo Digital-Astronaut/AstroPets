@@ -42,7 +42,6 @@ public class ItemMenu extends SubCommand {
         if (commandSender instanceof Player p) {
             new ItemsMainMenu(MenuManager.getPlayerMenuUtility(p)).open();
         }
-
     }
 
     @Override

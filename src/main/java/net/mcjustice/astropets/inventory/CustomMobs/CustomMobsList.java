@@ -3,16 +3,29 @@ package net.mcjustice.astropets.inventory.CustomMobs;
 import net.mcjustice.astroapi.Inventory.Menu;
 import net.mcjustice.astroapi.Inventory.MenuManager;
 import net.mcjustice.astroapi.Inventory.PaginatedMenu;
+import net.mcjustice.astroapi.Utils.FileUtils;
 import net.mcjustice.astroapi.Utils.MobUtils;
 import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
+import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.file.CustomMobFile;
+import net.mcjustice.astropets.file.ItemFile;
 import net.mcjustice.astropets.inventory.CustomMobs.MobEditorMenus.SpecificMobEditorMain;
 import net.mcjustice.astropets.mobs.AstroMob;
+import net.mcjustice.astropets.mobs.AstroMobUtils;
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
+import org.bukkit.NamespacedKey;
+import org.bukkit.attribute.Attribute;
+import org.bukkit.attribute.AttributeInstance;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.inventory.EntityEquipment;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.persistence.PersistentDataType;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,8 +34,6 @@ import java.util.List;
 public class CustomMobsList extends PaginatedMenu {
 
     private HashMap<Integer, AstroMob> mapMobSlots = new HashMap<>();
-
-    private String selectedMob;
 
     public CustomMobsList(PlayerMenuUtility playerMenuUtility, Menu previousMenu) {
         super(playerMenuUtility, previousMenu);
@@ -75,7 +86,14 @@ public class CustomMobsList extends PaginatedMenu {
 
             if (getMapMobSlots().containsKey(e.getRawSlot())) {
 
-                new SpecificMobEditorMain(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), getMapMobSlots().get(e.getRawSlot()), this).open();
+                if (e.getClick() == ClickType.LEFT) {
+
+                    new SpecificMobEditorMain(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), getMapMobSlots().get(e.getRawSlot()), this).open();
+
+                } else if (e.getClick() == ClickType.RIGHT) {
+
+                    AstroMobUtils.spawnMobAtPlayerLocation(getMapMobSlots().get(e.getRawSlot()), (Player) e.getWhoClicked());
+                }
             }
         }
     }

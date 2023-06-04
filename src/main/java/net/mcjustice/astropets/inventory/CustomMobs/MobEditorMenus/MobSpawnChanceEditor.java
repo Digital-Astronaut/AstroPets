@@ -1,11 +1,10 @@
-package net.mcjustice.astropets.inventory.Items.EditorMenus;
+package net.mcjustice.astropets.inventory.CustomMobs.MobEditorMenus;
 
-import net.mcjustice.astroapi.FileParameters.AstroInteger;
 import net.mcjustice.astroapi.Inventory.Menu;
 import net.mcjustice.astroapi.Inventory.PaginatedMenu;
 import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
-import net.mcjustice.astropets.inventory.Items.ItemsMainMenu;
-import net.mcjustice.astropets.items.AstroItem;
+import net.mcjustice.astropets.inventory.CustomMobs.CustomMobsMainMenu;
+import net.mcjustice.astropets.mobs.AstroMob;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -17,37 +16,23 @@ import org.bukkit.inventory.meta.ItemMeta;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ItemAmountEditor extends PaginatedMenu {
+public class MobSpawnChanceEditor extends PaginatedMenu {
 
-    AstroItem selectedItem;
+    private AstroMob selectedMob;
 
-    public ItemAmountEditor(PlayerMenuUtility playerMenuUtility, AstroItem selectedItem, Menu previousMenu) {
+    public MobSpawnChanceEditor(PlayerMenuUtility playerMenuUtility, AstroMob selectedMob, Menu previousMenu) {
         super(playerMenuUtility, previousMenu);
 
-        setSelectedItem(selectedItem);
+        this.selectedMob = selectedMob;
 
-        if (previousMenu != null) {
-            setMainMenu(new ItemsMainMenu(playerMenuUtility));
-        }
+        setMainMenu(new CustomMobsMainMenu(playerMenuUtility));
     }
-
-    public void setSelectedItem(AstroItem selectedItem) {
-        this.selectedItem = selectedItem;
-    }
-
-    public AstroItem getSelectedItem() { return selectedItem; }
 
     @Override
     public List<?> getData() {
         List<Material> material = new ArrayList<>();
 
-        Material matToAdd;
-
-        if (getSelectedItem() == null) {
-            matToAdd = Material.STONE;
-        } else {
-            matToAdd = Material.getMaterial(getSelectedItem().getItemResultMaterial().getCurrentMemoryValue().toUpperCase());
-        }
+        Material matToAdd = Material.RED_WOOL;
 
         for (int i = 0; i < getMaxAmountOfDisplayedItems(); i++) {
             material.add(matToAdd);
@@ -59,16 +44,25 @@ public class ItemAmountEditor extends PaginatedMenu {
     public void loopData(Object o) {
 
         if (o instanceof Material m) {
-            ItemStack amount = new ItemStack(m, index + 1);
+
+            ItemStack amount = new ItemStack(m);
 
             ItemMeta meta = amount.getItemMeta();
 
-            if (getSelectedItem().getItemResultAmount().getCurrentMemoryValue() == amount.getAmount()) {
-                meta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "Current amount");
+            List<String> lore = new ArrayList<>();
+
+            if (getMaxAmountOfDisplayedItems() < 64) {
+                amount.setAmount(index + 1);
+            }
+
+            if (selectedMob.getSpawnChance().getCurrentMemoryValue() == (index + 1)) {
+                amount.setType(Material.GREEN_WOOL);
+                meta.setDisplayName(ChatColor.GREEN + "" + ChatColor.BOLD + "Current chance (" + (index + 1) + ")");
                 meta.addEnchant(Enchantment.DURABILITY, 1, false);
                 meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
             } else {
-                meta.setDisplayName(ChatColor.AQUA + "" + ChatColor.BOLD + "Click to set the amount to " + (index + 1) + "!");
+                meta.setDisplayName(ChatColor.AQUA + "" + (index + 1));
+                lore.add(ChatColor.AQUA + "" + ChatColor.BOLD + "Click to set the amount to " + (index + 1) + "!");
             }
             amount.setItemMeta(meta);
 
@@ -78,12 +72,12 @@ public class ItemAmountEditor extends PaginatedMenu {
 
     @Override
     public int getMaxAmountOfDisplayedItems() {
-        return 64;
+        return selectedMob.getSpawnChance().getMaximumValue();
     }
 
     @Override
     public String getMenuName() {
-        return ChatColor.BLUE + "" + ChatColor.BOLD + "Item Amount Selector";
+        return ChatColor.BLUE + "" + ChatColor.BOLD + "Mob Spawn Chance";
     }
 
     @Override
@@ -92,7 +86,7 @@ public class ItemAmountEditor extends PaginatedMenu {
         if (e.getRawSlot() < 45) {
             if (e.getCurrentItem().hasItemMeta()) {
                 if (e.getCurrentItem().getItemMeta().hasDisplayName()) {
-                    getSelectedItem().getItemResultAmount().setCurrentMemoryValue(e.getCurrentItem().getAmount());
+                    selectedMob.getSpawnChance().setCurrentMemoryValue(Integer.parseInt(ChatColor.stripColor(e.getCurrentItem().getItemMeta().getDisplayName())));
                 }
                 open();
             }

@@ -37,7 +37,7 @@ public class MobAttributeEditorMain extends Menu {
     @Override
     public String getMenuName() {
 
-        return ChatColor.translateAlternateColorCodes('&', selectedMob.getMobDisplayName().getCurrentMemoryValue()) + ChatColor.BLUE + "" + ChatColor.BOLD + " Attributes";
+        return ChatColor.BLUE + "" + ChatColor.BOLD + ChatColor.stripColor(ChatColor.translateAlternateColorCodes('&', selectedMob.getMobDisplayName().getCurrentMemoryValue())) + " Attributes";
     }
 
     @Override

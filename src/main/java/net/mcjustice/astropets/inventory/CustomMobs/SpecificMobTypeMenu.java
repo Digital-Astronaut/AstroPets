@@ -1,24 +1,30 @@
 package net.mcjustice.astropets.inventory.CustomMobs;
 
 import net.mcjustice.astroapi.Inventory.Menu;
+import net.mcjustice.astroapi.Inventory.MenuManager;
 import net.mcjustice.astroapi.Inventory.PaginatedMenu;
 import net.mcjustice.astroapi.Utils.MobUtils;
 import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
 import net.mcjustice.astroapi.Utils.TextUtils;
 import net.mcjustice.astropets.file.CustomMobFile;
+import net.mcjustice.astropets.inventory.CustomMobs.MobEditorMenus.SpecificMobEditorMain;
 import net.mcjustice.astropets.mobs.AstroMob;
 import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class SpecificMobTypeMenu extends PaginatedMenu {
 
     private String selectedMobType;
+
+    private HashMap<Integer, AstroMob> mapMobSlots = new HashMap<>();
 
     public SpecificMobTypeMenu(PlayerMenuUtility playerMenuUtility, String selectedMobType, Menu previousMenu) {
         super(playerMenuUtility, previousMenu);
@@ -53,6 +59,7 @@ public class SpecificMobTypeMenu extends PaginatedMenu {
 
             eggItem.setItemMeta(eggMeta);
 
+            mapMobSlots.put(inventory.firstEmpty(), mob);
             inventory.setItem(inventory.firstEmpty(), eggItem);
         }
     }
@@ -70,7 +77,11 @@ public class SpecificMobTypeMenu extends PaginatedMenu {
     @Override
     public void handleMenu(InventoryClickEvent e) {
 
+        if (e.getRawSlot() < getSlots() - 9) {
 
-
+            if (mapMobSlots.containsKey(e.getRawSlot())) {
+                new SpecificMobEditorMain(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), mapMobSlots.get(e.getRawSlot()), this).open();
+            }
+        }
     }
 }
