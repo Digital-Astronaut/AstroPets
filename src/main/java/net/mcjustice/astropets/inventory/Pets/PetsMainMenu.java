@@ -1,8 +1,8 @@
 package net.mcjustice.astropets.inventory.Pets;
 
-import net.mcjustice.astroapi.Inventory.MenuManager;
-import net.mcjustice.astroapi.Inventory.PaginatedMenu;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.inventory.MenuManager;
+import net.mcjustice.astroapi.inventory.PaginatedMenu;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
 import net.mcjustice.astropets.file.PetFile;
 import net.mcjustice.astropets.mobs.AstroPet;
 import org.bukkit.ChatColor;

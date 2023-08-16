@@ -1,9 +1,9 @@
 package net.mcjustice.astropets.mobs;
 
-import net.mcjustice.astroapi.File.CustomMobAstroFile;
-import net.mcjustice.astroapi.FileParameters.*;
-import net.mcjustice.astroapi.Utils.MaterialUtils;
-import net.mcjustice.astroapi.Utils.MobUtils;
+import net.mcjustice.astroapi.file.CustomMobAstroFile;
+import net.mcjustice.astroapi.fileparameters.*;
+import net.mcjustice.astroapi.utils.MaterialUtils;
+import net.mcjustice.astroapi.utils.MobUtils;
 import net.mcjustice.astropets.file.ItemFile;
 
 import java.util.ArrayList;
@@ -15,8 +15,6 @@ public class AstroMob extends CustomMobAstroFile {
     public AstroMob(String filePath) {
         super(filePath);
     }
-
-
 
     @Override
     public void setMobDisplayName() {
@@ -120,7 +118,7 @@ public class AstroMob extends CustomMobAstroFile {
     @Override
     public void setSectionTest() {
 
-        sectionTest = new AstroSection(this, "Inventory Contents.Mob Drops", MaterialUtils.allValidMaterialsStringList(), null);
+//        sectionTest = new AstroSection(this, "Inventory Contents.Mob Drops", MaterialUtils.allValidMaterialsStringList(), null);
     }
 
     @Override

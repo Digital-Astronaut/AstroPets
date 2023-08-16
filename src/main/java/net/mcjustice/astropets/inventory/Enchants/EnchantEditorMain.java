@@ -1,7 +1,7 @@
 package net.mcjustice.astropets.inventory.Enchants;
 
-import net.mcjustice.astroapi.Inventory.Menu;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.inventory.Menu;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
 import net.mcjustice.astropets.enchantments.CustomEnchant;
 import org.bukkit.ChatColor;
 import org.bukkit.event.inventory.InventoryClickEvent;

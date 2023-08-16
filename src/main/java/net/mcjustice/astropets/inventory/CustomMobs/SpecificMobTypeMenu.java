@@ -1,11 +1,11 @@
 package net.mcjustice.astropets.inventory.CustomMobs;
 
-import net.mcjustice.astroapi.Inventory.Menu;
-import net.mcjustice.astroapi.Inventory.MenuManager;
-import net.mcjustice.astroapi.Inventory.PaginatedMenu;
-import net.mcjustice.astroapi.Utils.MobUtils;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
-import net.mcjustice.astroapi.Utils.TextUtils;
+import net.mcjustice.astroapi.inventory.Menu;
+import net.mcjustice.astroapi.inventory.MenuManager;
+import net.mcjustice.astroapi.inventory.PaginatedMenu;
+import net.mcjustice.astroapi.utils.MobUtils;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.utils.TextUtils;
 import net.mcjustice.astropets.file.CustomMobFile;
 import net.mcjustice.astropets.inventory.CustomMobs.MobEditorMenus.SpecificMobEditorMain;
 import net.mcjustice.astropets.mobs.AstroMob;

@@ -1,14 +1,13 @@
 package net.mcjustice.astropets.inventory.CustomMobs.MobEditorMenus.InventoryContents;
 
-import net.mcjustice.astroapi.Inventory.Menu;
-import net.mcjustice.astroapi.Inventory.MenuManager;
-import net.mcjustice.astroapi.Utils.FileUtils;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.inventory.Menu;
+import net.mcjustice.astroapi.inventory.MenuManager;
+import net.mcjustice.astroapi.utils.FileUtils;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.file.ItemFile;
 import net.mcjustice.astropets.inventory.CustomMobs.CustomMobsMainMenu;
 import net.mcjustice.astropets.mobs.AstroMob;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;

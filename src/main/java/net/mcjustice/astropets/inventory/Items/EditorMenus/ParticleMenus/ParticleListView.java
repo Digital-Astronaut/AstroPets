@@ -1,10 +1,10 @@
 package net.mcjustice.astropets.inventory.Items.EditorMenus.ParticleMenus;
 
-import net.mcjustice.astroapi.Inventory.Menu;
-import net.mcjustice.astroapi.Inventory.PaginatedMenu;
-import net.mcjustice.astroapi.Utils.ParticleUtils;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
-import net.mcjustice.astroapi.Utils.TextUtils;
+import net.mcjustice.astroapi.inventory.Menu;
+import net.mcjustice.astroapi.inventory.PaginatedMenu;
+import net.mcjustice.astroapi.utils.ParticleUtils;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.utils.TextUtils;
 import net.mcjustice.astropets.inventory.Items.ItemsMainMenu;
 import net.mcjustice.astropets.items.AstroItem;
 import org.bukkit.ChatColor;

@@ -1,10 +1,10 @@
 package net.mcjustice.astropets.enchantments;
 
-import net.mcjustice.astroapi.File.EnchantmentsAstroFile;
-import net.mcjustice.astroapi.FileParameters.AstroBoolean;
-import net.mcjustice.astroapi.FileParameters.AstroInteger;
-import net.mcjustice.astroapi.FileParameters.AstroString;
-import net.mcjustice.astroapi.Utils.EnchantmentUtils;
+import net.mcjustice.astroapi.file.EnchantmentsAstroFile;
+import net.mcjustice.astroapi.fileparameters.AstroBoolean;
+import net.mcjustice.astroapi.fileparameters.AstroInteger;
+import net.mcjustice.astroapi.fileparameters.AstroString;
+import net.mcjustice.astroapi.utils.EnchantmentUtils;
 import org.bukkit.NamespacedKey;
 
 import java.util.List;

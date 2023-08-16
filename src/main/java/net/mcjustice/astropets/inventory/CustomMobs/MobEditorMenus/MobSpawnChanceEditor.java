@@ -1,8 +1,8 @@
 package net.mcjustice.astropets.inventory.CustomMobs.MobEditorMenus;
 
-import net.mcjustice.astroapi.Inventory.Menu;
-import net.mcjustice.astroapi.Inventory.PaginatedMenu;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.inventory.Menu;
+import net.mcjustice.astroapi.inventory.PaginatedMenu;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
 import net.mcjustice.astropets.inventory.CustomMobs.CustomMobsMainMenu;
 import net.mcjustice.astropets.mobs.AstroMob;
 import org.bukkit.ChatColor;

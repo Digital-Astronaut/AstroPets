@@ -1,6 +1,6 @@
 package net.mcjustice.astropets.file;
 
-import net.mcjustice.astroapi.Utils.FileUtils;
+import net.mcjustice.astroapi.utils.FileUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.mobs.AstroPet;
 import net.md_5.bungee.api.ChatColor;

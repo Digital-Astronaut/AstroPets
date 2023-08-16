@@ -1,16 +1,16 @@
 package net.mcjustice.astropets.commands.custommobs;
 
-import net.mcjustice.astroapi.Commands.SubCommand;
-import net.mcjustice.astroapi.FileParameters.AstroParam;
-import net.mcjustice.astroapi.Utils.FileUtils;
-import net.mcjustice.astroapi.Utils.MobUtils;
+import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.kyori.adventure.text.format.NamedTextColor;
+import net.mcjustice.astroapi.commands.SubCommand;
+import net.mcjustice.astroapi.fileparameters.AstroParam;
+import net.mcjustice.astroapi.utils.FileUtils;
+import net.mcjustice.astroapi.utils.MobUtils;
 import net.mcjustice.astropets.file.CustomMobFile;
-import net.mcjustice.astropets.file.ItemFile;
 import net.mcjustice.astropets.mobs.AstroMob;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -80,10 +80,20 @@ public class CustomMobUpdate extends SubCommand {
 
                             if (entry.getKey().contains(argFixed)) {
 
-                                TextComponent component = new TextComponent(ChatColor.LIGHT_PURPLE + "(" + entry.getValue().getParentFile().getName() + ") - " + ChatColor.AQUA + entry.getValue().getName().replace(".yml", ""));
-                                component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mobs update " + entry.getValue().getParentFile().getName().toUpperCase() + " " + entry.getValue().getName().replace(".yml", "")));
-                                component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.AQUA + "/mobs update " + entry.getValue().getParentFile().getName().toUpperCase() + " " + entry.getValue().getName().replace(".yml", ""))));
-                                p.spigot().sendMessage(component);
+                                TextComponent.Builder component = Component.text("(" + entry.getValue().getParentFile().getName() + ") - ", NamedTextColor.LIGHT_PURPLE)
+                                        .append(Component.text(entry.getValue().getName().replace(".yml", ""), NamedTextColor.AQUA))
+                                        .clickEvent(ClickEvent.runCommand("/mobs update " + entry.getValue().getParentFile().getName().toUpperCase() + " " + entry.getValue().getName().replace(".yml", "")))
+                                        .hoverEvent(HoverEvent.showText(
+                                                Component.text("/mobs update " + entry.getValue().getParentFile().getName().toUpperCase() + " " + entry.getValue().getName().replace(".yml", ""), NamedTextColor.AQUA)))
+                                        .toBuilder();
+
+                                p.sendMessage(component);
+
+
+//                                TextComponent component = new TextComponent(ChatColor.LIGHT_PURPLE + "(" + entry.getValue().getParentFile().getName() + ") - " + ChatColor.AQUA + entry.getValue().getName().replace(".yml", ""));
+//                                component.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/mobs update " + entry.getValue().getParentFile().getName().toUpperCase() + " " + entry.getValue().getName().replace(".yml", "")));
+//                                component.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text(ChatColor.AQUA + "/mobs update " + entry.getValue().getParentFile().getName().toUpperCase() + " " + entry.getValue().getName().replace(".yml", ""))));
+//                                p.spigot().sendMessage(component);
                             }
                         }
                     } else {

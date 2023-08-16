@@ -1,11 +1,11 @@
 package net.mcjustice.astropets.commands.pets;
 
-import net.mcjustice.astroapi.Commands.SubCommand;
-import net.mcjustice.astroapi.Inventory.MenuManager;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.mcjustice.astroapi.commands.SubCommand;
+import net.mcjustice.astroapi.inventory.MenuManager;
 import net.mcjustice.astropets.inventory.Pets.PetsMainMenu;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.Nullable;

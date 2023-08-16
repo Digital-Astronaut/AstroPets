@@ -1,6 +1,6 @@
 package net.mcjustice.astropets.listeners.items;
 
-import net.mcjustice.astroapi.Utils.FileUtils;
+import net.mcjustice.astroapi.utils.FileUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.file.ItemFile;
 import org.bukkit.ChatColor;
@@ -8,8 +8,6 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
 import org.bukkit.block.Chest;
-import org.bukkit.enchantments.Enchantment;
-import org.bukkit.entity.Arrow;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -126,23 +124,31 @@ public class ChestLinkListener implements Listener {
 
                     if (ChatColor.translateAlternateColorCodes('&', metaColor).equalsIgnoreCase(itemFileDisplayName)) {
                         System.out.println(metaColor + " matches " + itemFileDisplayName);
-//                        e.setCancelled(true);
+
                         e.setConsumeItem(false);
                         p.updateInventory();
 
-//                        if (p.getInventory().contains(Material.ARROW)) {
-//
 //                            if (e.getBow().hasItemMeta()) {
+//                                e.setProjectile((Arrow) Material.ARROW);
 //                                if (e.getBow().getItemMeta().hasEnchants()) {
 //                                    if (e.getBow().getItemMeta().hasEnchant(Enchantment.ARROW_INFINITE)) {
 //
+//                                    } else {
+//                                        if (p.getInventory().contains(Material.ARROW)) {
+//                                            p.getInventory().remove(Material.ARROW);
+//                                            p.updateInventory();
+//                                        }
+//                                    }
+//                                } else {
+//                                    if (p.getInventory().contains(Material.ARROW)) {
+//                                        p.getInventory().remove(Material.ARROW);
+//                                        p.updateInventory();
 //                                    }
 //                                }
 //                            }
-//
 //                        }
 
-                        e.setCancelled(true);
+//                        e.setCancelled(true);
                     }
                 }
             }

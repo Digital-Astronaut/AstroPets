@@ -1,10 +1,10 @@
 package net.mcjustice.astropets;
 
-import net.mcjustice.astroapi.Commands.CommandManager;
-import net.mcjustice.astroapi.Inventory.MenuManager;
-import net.mcjustice.astroapi.Utils.EnchantmentUtils;
-import net.mcjustice.astroapi.Utils.FileUtils;
-import net.mcjustice.astroapi.Utils.ItemUtils;
+import net.mcjustice.astroapi.commands.CommandManager;
+import net.mcjustice.astroapi.inventory.MenuManager;
+import net.mcjustice.astroapi.utils.EnchantmentUtils;
+import net.mcjustice.astroapi.utils.FileUtils;
+import net.mcjustice.astroapi.utils.ItemUtils;
 import net.mcjustice.astropets.commands.custommobs.CustomMobMenu;
 import net.mcjustice.astropets.commands.custommobs.CustomMobReload;
 import net.mcjustice.astropets.commands.custommobs.CustomMobUpdate;
@@ -29,6 +29,7 @@ import net.mcjustice.astropets.listeners.enchantments.TreecapitatorEvent;
 import net.mcjustice.astropets.listeners.items.ChestLinkListener;
 import net.mcjustice.astropets.listeners.mobs.*;
 import net.mcjustice.astropets.listeners.particles.ItemParticleListener;
+import net.mcjustice.astropets.listeners.player.PlayerTardisEvent;
 import net.mcjustice.astropets.mobs.AstroMob;
 import net.mcjustice.astropets.mobs.AstroPet;
 import net.md_5.bungee.api.ChatColor;
@@ -49,7 +50,7 @@ public final class AstroPets extends JavaPlugin {
 
     public static final AstroAPI api = (AstroAPI) Bukkit.getServer().getPluginManager().getPlugin("AstroAPI");
 
-    public static AstroPets ASTROPETS;
+    private static AstroPets ASTROPETS;
 
     public static FileUtils FILEUTILS;
 
@@ -176,7 +177,6 @@ public final class AstroPets extends JavaPlugin {
         CustomMobFile.populateCustomMobsMap();
 
         reloadFiles();
-
     }
 
     public void reloadFiles() {
@@ -202,13 +202,6 @@ public final class AstroPets extends JavaPlugin {
             ItemFile.getItemsMap().get(key).reloadParams();
         }
 
-//        for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMap().entrySet()) {
-//
-//            String key = entry.getKey();
-//
-//            CustomMobFile.getCustomMobsMap().get(key).reloadParams();
-//        }
-
         for (Map.Entry<String, AstroMob> entry : CustomMobFile.getCustomMobsMapMappedToFolders().entrySet()) {
 
             String key = entry.getKey();
@@ -218,16 +211,17 @@ public final class AstroPets extends JavaPlugin {
     }
 
     public void createCommands() throws NoSuchFieldException, IllegalAccessException {
-        CommandManager.createCommand(this, "pets", "Fun pets for Izzy! :D", "/pets", null, PetCreate.class, PetReload.class, PetMenu.class);
-        CommandManager.createCommand(this, "enchants", "Custom enchantment creator", "/enchants", null, EnchantCreate.class, EnchantReload.class, EnchantMenu.class);
-        CommandManager.createCommand(this, "items", "Custom item creator", "/items", null, ItemCreate.class, ItemReload.class, ItemMenu.class, ItemUpdate.class);
-        CommandManager.createCommand(this, "mobs", "Custom mob creator", "/mobs", null, CustomMobMenu.class, CustomMobReload.class, CustomMobUpdate.class);
+        CommandManager.createCommand(this, "pets", "Fun pets for Izzy! :D", "/pets", PetMenu.class, null, null, PetCreate.class, PetReload.class, PetMenu.class);
+        CommandManager.createCommand(this, "enchants", "Custom enchantment creator", "/enchants", EnchantMenu.class, null, null, EnchantCreate.class, EnchantReload.class, EnchantMenu.class);
+        CommandManager.createCommand(this, "items", "Custom item creator", "/items", ItemMenu.class, null, null, ItemCreate.class, ItemReload.class, ItemMenu.class, ItemUpdate.class);
+        CommandManager.createCommand(this, "mobs", "Custom mob creator", "/mobs", CustomMobMenu.class, null, null, CustomMobMenu.class, CustomMobReload.class, CustomMobUpdate.class);
     }
 
     @Override
     public void onDisable() {
         Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "Successfully disabled AstroPets");
         EnchantmentUtils.deregisterEnchantments(this, this.getDataFolder().getAbsoluteFile() + File.separator + "Custom Enchantments");
+//        reloadFiles();
     }
 
     public void registerListeners() {
@@ -241,6 +235,7 @@ public final class AstroPets extends JavaPlugin {
         Bukkit.getPluginManager().registerEvents(new CustomMobPlayerDamageListener(), this);
         Bukkit.getPluginManager().registerEvents(new PlayerEntityKillCustomMob(), this);
         Bukkit.getPluginManager().registerEvents(new CustomMobInteractEvent(), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerTardisEvent(), this);
     }
 
     public static AstroPets getPlugin() {

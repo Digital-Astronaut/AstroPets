@@ -1,12 +1,12 @@
 package net.mcjustice.astropets.commands.items;
 
-import net.mcjustice.astroapi.Commands.SubCommand;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.mcjustice.astroapi.commands.SubCommand;
+import net.mcjustice.astroapi.fileparameters.AstroString;
 import net.mcjustice.astropets.file.ItemFile;
 import net.mcjustice.astropets.items.AstroItem;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.ConsoleCommandSender;
@@ -52,7 +52,12 @@ public class ItemReload extends SubCommand {
 
                 for (Map.Entry<String, AstroItem> entry : ItemFile.getItemsMap().entrySet()) {
 
+                    // TODO: CHECK IF THIS CODE WHEN THIS LINE IS REMOVED
+//                    ItemFile.updateAllValidMatsAndEnabledItems();
+
                     entry.getValue().getIngredientMaterials().forEach(as -> as.overrideValidValues(ItemFile.getAllValidMatsAndEnabledItems()));
+
+                    entry.getValue().getIngredientMaterials().forEach(AstroString::onReload);
 
                     ItemFile.getItemsMap().get(entry.getKey()).reloadParams();
                 }
@@ -74,7 +79,6 @@ public class ItemReload extends SubCommand {
 
                     p.sendMessage(ChatColor.GREEN + "Successfully reloaded file " + argFixed);
                 } else {
-
                     p.sendMessage(ChatColor.RED + "An item with that name does not exist.");
                 }
 
@@ -106,8 +110,6 @@ public class ItemReload extends SubCommand {
 
                 for (Map.Entry<String, AstroItem> entry : ItemFile.getItemsMap().entrySet()) {
 
-                    Bukkit.getConsoleSender().sendMessage(ChatColor.BLUE + "Overriding list now");
-
                     entry.getValue().getIngredientMaterials().forEach(as -> as.overrideValidValues(ItemFile.getAllValidMatsAndEnabledItems()));
 
                     ItemFile.getItemsMap().get(entry.getKey()).reloadParams();
@@ -129,7 +131,6 @@ public class ItemReload extends SubCommand {
 
                     ccs.sendMessage(ChatColor.GREEN + "Successfully reloaded file " + argFixed);
                 } else {
-
                     ccs.sendMessage(ChatColor.RED + "An item with that name does not exist.");
                 }
 

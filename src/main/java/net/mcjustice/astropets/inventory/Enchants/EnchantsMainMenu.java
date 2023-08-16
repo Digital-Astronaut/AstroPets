@@ -1,10 +1,10 @@
 package net.mcjustice.astropets.inventory.Enchants;
 
-import net.mcjustice.astroapi.Enchantments.CustomEnchantment;
-import net.mcjustice.astroapi.Inventory.MenuManager;
-import net.mcjustice.astroapi.Inventory.PaginatedMenu;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
-import net.mcjustice.astroapi.Utils.TextUtils;
+import net.mcjustice.astroapi.enchantments.CustomEnchantment;
+import net.mcjustice.astroapi.inventory.MenuManager;
+import net.mcjustice.astroapi.inventory.PaginatedMenu;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.utils.TextUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.enchantments.CustomEnchant;
 import net.mcjustice.astropets.file.EnchantmentFile;

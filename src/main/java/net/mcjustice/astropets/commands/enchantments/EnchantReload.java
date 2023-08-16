@@ -1,11 +1,10 @@
 package net.mcjustice.astropets.commands.enchantments;
 
-import net.mcjustice.astroapi.Commands.SubCommand;
+import net.kyori.adventure.text.TextComponent;
+import net.kyori.adventure.text.event.ClickEvent;
+import net.kyori.adventure.text.event.HoverEvent;
+import net.mcjustice.astroapi.commands.SubCommand;
 import net.mcjustice.astropets.file.EnchantmentFile;
-import net.mcjustice.astropets.file.PetFile;
-import net.md_5.bungee.api.chat.ClickEvent;
-import net.md_5.bungee.api.chat.HoverEvent;
-import net.md_5.bungee.api.chat.TextComponent;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;

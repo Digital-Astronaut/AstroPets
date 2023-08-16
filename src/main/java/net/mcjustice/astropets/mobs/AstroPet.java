@@ -1,9 +1,9 @@
 package net.mcjustice.astropets.mobs;
 
-import net.mcjustice.astroapi.FileParameters.AstroString;
-import net.mcjustice.astroapi.FileParameters.AstroStringList;
-import net.mcjustice.astroapi.File.AstroFile;
-import net.mcjustice.astroapi.Utils.MobUtils;
+import net.mcjustice.astroapi.fileparameters.AstroString;
+import net.mcjustice.astroapi.fileparameters.AstroStringList;
+import net.mcjustice.astroapi.file.AstroFile;
+import net.mcjustice.astroapi.utils.MobUtils;
 
 import java.util.Arrays;
 import java.util.List;
@@ -22,7 +22,7 @@ public class AstroPet extends AstroFile {
     }
 
     @Override
-    public void addParams() {
+    public void addSchema() {
 
         fileName = new AstroString(this, "File Name", Arrays.asList(this.getName()), this.getName());
         displayName = new AstroString(this, "Display Name", Arrays.asList("&7&l" + getName().replace(".yml", "")), "&7&l" + getName().replace(".yml", ""));

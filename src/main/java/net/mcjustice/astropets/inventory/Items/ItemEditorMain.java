@@ -1,8 +1,8 @@
 package net.mcjustice.astropets.inventory.Items;
 
-import net.mcjustice.astroapi.Inventory.Menu;
-import net.mcjustice.astroapi.Inventory.MenuManager;
-import net.mcjustice.astroapi.Utils.PlayerMenuUtility;
+import net.mcjustice.astroapi.inventory.Menu;
+import net.mcjustice.astroapi.inventory.MenuManager;
+import net.mcjustice.astroapi.utils.PlayerMenuUtility;
 import net.mcjustice.astropets.inventory.Items.EditorMenus.ItemAmountEditor;
 import net.mcjustice.astropets.inventory.Items.EditorMenus.EnchantmentMenus.ItemEnchantmentsEditor;
 import net.mcjustice.astropets.inventory.Items.EditorMenus.ItemFlagEditor;
@@ -119,7 +119,6 @@ public class ItemEditorMain extends Menu {
         inventory.setItem(29, editRecipe);
         inventory.setItem(31, editParticles);
         inventory.setItem(33, editSounds);
-
     }
 
     @Override
@@ -127,8 +126,10 @@ public class ItemEditorMain extends Menu {
 
         if (e.getRawSlot() == 11) {
             if (e.getClick() == ClickType.LEFT)
+
                 new ItemMaterialEditor(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), getSelectedItem(), this).open();
             else if (e.getClick() == ClickType.RIGHT) {
+
                 new ItemAmountEditor(MenuManager.getPlayerMenuUtility((Player) e.getWhoClicked()), getSelectedItem(), this).open();
             }
         } else if (e.getRawSlot() == 13) {

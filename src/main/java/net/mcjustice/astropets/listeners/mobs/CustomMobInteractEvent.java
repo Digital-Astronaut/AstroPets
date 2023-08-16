@@ -1,9 +1,7 @@
 package net.mcjustice.astropets.listeners.mobs;
 
-import net.mcjustice.astroapi.Utils.FileUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.file.CustomMobFile;
-import net.mcjustice.astropets.file.PetFile;
 import net.mcjustice.astropets.mobs.AstroMob;
 import net.mcjustice.astropets.mobs.AstroMobUtils;
 import org.bukkit.ChatColor;
@@ -16,9 +14,6 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.persistence.PersistentDataContainer;
 import org.bukkit.persistence.PersistentDataType;
-
-import java.util.List;
-import java.util.Random;
 
 public class CustomMobInteractEvent implements Listener {
 

@@ -1,11 +1,8 @@
 package net.mcjustice.astropets.listeners.mobs;
 
-import net.mcjustice.astroapi.Utils.FileUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.file.CustomMobFile;
-import net.mcjustice.astropets.file.ItemFile;
 import net.mcjustice.astropets.mobs.AstroMob;
-import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
 import org.bukkit.entity.Entity;
 import org.bukkit.event.EventHandler;

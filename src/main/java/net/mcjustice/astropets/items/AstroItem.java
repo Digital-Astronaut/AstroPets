@@ -1,10 +1,10 @@
 package net.mcjustice.astropets.items;
 
-import net.mcjustice.astroapi.File.ItemsAstroFile;
-import net.mcjustice.astroapi.FileParameters.*;
-import net.mcjustice.astroapi.Utils.ItemUtils;
-import net.mcjustice.astroapi.Utils.ParticleUtils;
-import net.mcjustice.astroapi.Utils.TextUtils;
+import net.mcjustice.astroapi.file.ItemsAstroFile;
+import net.mcjustice.astroapi.fileparameters.*;
+import net.mcjustice.astroapi.utils.ItemUtils;
+import net.mcjustice.astroapi.utils.ParticleUtils;
+import net.mcjustice.astroapi.utils.TextUtils;
 import net.mcjustice.astropets.file.ItemFile;
 
 import java.util.ArrayList;

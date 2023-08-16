@@ -1,8 +1,8 @@
 package net.mcjustice.astropets.file;
 
-import net.mcjustice.astroapi.Utils.FileUtils;
-import net.mcjustice.astroapi.Utils.ItemUtils;
-import net.mcjustice.astroapi.Utils.MaterialUtils;
+import net.mcjustice.astroapi.utils.FileUtils;
+import net.mcjustice.astroapi.utils.ItemUtils;
+import net.mcjustice.astroapi.utils.MaterialUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.items.AstroItem;
 import org.bukkit.Bukkit;
@@ -17,6 +17,8 @@ import java.util.Map;
 public class ItemFile {
 
     public static HashMap<String, AstroItem> itemsMap = new HashMap<>();
+
+    private static List<String> validMatsAndRegisteredItems = new ArrayList<>();
 
     public static void populateItemsMap() {
 
@@ -74,8 +76,6 @@ public class ItemFile {
             getItemsMap().put(astroItem.getName().toUpperCase(), astroItem);
 
             astroItem.reloadParams();
-
-
         }
     }
 
@@ -86,19 +86,37 @@ public class ItemFile {
 
     public static List<String> getAllValidMatsAndEnabledItems() {
 
-        List<String> validMatsAndRegisteredItems = new ArrayList<>();
+//        List<String> validMatsAndRegisteredItems = new ArrayList<>();
+
+        for (Map.Entry<String, AstroItem> entry : ItemFile.getItemsMap().entrySet()) {
+            entry.getValue().getIsEnabled().onReload();
+            if (Boolean.parseBoolean(entry.getValue().getIsEnabled().getCurrentValue().toString())) {
+
+//                System.out.println("Adding: " + entry.getValue().getDisplayName().getCurrentValue() + ": " + entry.getValue().getIsEnabled().getCurrentValue());
+                validMatsAndRegisteredItems.add(entry.getKey().replace(".YML", ""));
+            }
+            else {
+//                System.out.println("Removing: " + entry.getValue().getDisplayName().getCurrentValue() + ": " + entry.getValue().getIsEnabled().getCurrentValue());
+
+                validMatsAndRegisteredItems.remove(entry.getKey().replace(".YML", ""));
+            }
+        }
+        validMatsAndRegisteredItems.addAll(ItemUtils.itemMaterialsList());
+
+        return validMatsAndRegisteredItems;
+    }
+
+    public static void updateAllValidMatsAndEnabledItems() {
 
         for (Map.Entry<String, AstroItem> entry : ItemFile.getItemsMap().entrySet()) {
             entry.getValue().getIsEnabled().onReload();
             if (Boolean.parseBoolean(entry.getValue().getIsEnabled().getCurrentValue().toString())) {
 
                 validMatsAndRegisteredItems.add(entry.getKey().replace(".YML", ""));
+            } else {
+                validMatsAndRegisteredItems.remove(entry.getKey().replace(".YML", ""));
             }
         }
-
-        validMatsAndRegisteredItems.addAll(ItemUtils.itemMaterialsList());
-
-        return validMatsAndRegisteredItems;
     }
 
     public static List<String> getAllValidMatsAndEnabledHeldItems() {

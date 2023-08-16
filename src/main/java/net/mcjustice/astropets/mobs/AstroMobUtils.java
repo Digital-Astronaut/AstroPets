@@ -1,6 +1,6 @@
 package net.mcjustice.astropets.mobs;
 
-import net.mcjustice.astroapi.Utils.FileUtils;
+import net.mcjustice.astroapi.utils.FileUtils;
 import net.mcjustice.astropets.AstroPets;
 import net.mcjustice.astropets.file.CustomMobFile;
 import net.mcjustice.astropets.file.ItemFile;
@@ -21,16 +21,20 @@ import java.util.Random;
 
 public class AstroMobUtils {
 
+
+    private static Random r = new Random();
+
     public static void spawnMobBasedOnChance(LivingEntity entity) {
 
         File file = new File(AstroPets.getPlugin().getDataFolder().getAbsoluteFile() + File.separator + "Custom Mobs" + File.separator + entity.getType());
 
         File[] files = file.listFiles();
 
-        assert files != null;
+        if (files == null) {
+            Bukkit.getConsoleSender().sendMessage(ChatColor.RED + "File list for " + entity.getType() + " is null");
+            return;
+        }
         if (files.length != 0) {
-
-            Random r = new Random();
 
             int chance = r.nextInt(100) + 1;
 
@@ -226,8 +230,6 @@ public class AstroMobUtils {
 
         EntityEquipment armor = entity.getEquipment();
 
-        Random r = new Random();
-
         int chance = r.nextInt(100) + 1;
 
         if (mob.getMobHelmetEnabled().getCurrentMemoryValue()) {
@@ -367,8 +369,6 @@ public class AstroMobUtils {
     public static String getRandomQuote(List<String> quotes, @Nullable String replace, @Nullable String replaceWith) {
 
         if (quotes != null && quotes.size() != 0) {
-
-            Random r = new Random();
 
             if (replace != null && replaceWith != null) {
 
